@@ -2,9 +2,23 @@ package Bridge;
 
 class Main {
     public static void main(String[] args) {
-        System.out.printf("Hello and welcome!");
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("i = " + i);
-        }
+        Device radio = new Radio();
+        Device tv = new Tv();
+        Remote losersRemote = new BasicRemote(radio);
+        Remote jeremysRemote = new AdvancedRemote(tv);
+
+        losersRemote.power();
+        losersRemote.volumeDown();
+        losersRemote.channelUp();
+        losersRemote.channelUp();
+        losersRemote.power();
+
+        jeremysRemote.power();
+        jeremysRemote.volumeUp();
+        jeremysRemote.channelDown();
+        ((AdvancedRemote) jeremysRemote).mute();
+
+        radio.printStatus();
+        tv.printStatus();
     }
 }
